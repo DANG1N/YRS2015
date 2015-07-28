@@ -43,14 +43,14 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="collision" visible="0">
+ <objectgroup name="collision">
   <object id="13" x="1" y="133" width="92" height="57"/>
   <object id="14" x="93" y="163" width="98" height="61"/>
   <object id="15" x="192" y="196" width="94" height="60"/>
   <object id="16" x="283" y="224" width="37" height="45"/>
-  <object id="17" x="319" y="257" width="96" height="65"/>
+  <object id="17" x="319" y="257" width="96" height="32"/>
   <object id="23" x="31" y="191" width="4" height="210"/>
-  <object id="24" x="22" y="386" width="392" height="41"/>
+  <object id="24" x="22" y="386" width="362" height="41"/>
   <object id="25" x="401" y="420" width="369" height="10"/>
   <object id="26" x="765" y="389" width="39" height="41"/>
   <object id="27" x="797" y="356" width="41" height="45"/>
