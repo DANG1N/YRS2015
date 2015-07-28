@@ -16,6 +16,44 @@
         {%for script in scripts {
             <script type="text/javascript" src="{%{script.src}%}"{%{script.additional}%}></script>
         } %endfor}
+        <script>
+            var GeoLocation = new function () {
+
+                var limit = new Date();
+                var geoObj = {coords: {latitude:0, longitude:0}};
+                var self = this;
+                var ready = false;
+                var maxTimeout = 5000;
+
+                function setGeoObject(object) {
+                    geoObj = object;
+                    ready = true;
+                }
+
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(setGeoObject);
+                }
+
+                this.getLocation = function () {
+                    return geoObj;
+                }
+
+                this.isReady = function () {
+                    return ready || (ready = (new Date() - limit) > maxTimeout);
+                }
+
+                this.wait = function (callback) {
+                    if (GeoLocation.isReady()) {
+                        callback(GeoLocation.getLocation())
+                    } else {
+                        setTimeout(function () {
+                            GeoLocation.wait(callback)
+                        }, 100)
+                    }
+                }
+
+            }
+        </script>
         <!-- Bootstrap & Mobile optimization tricks -->
         <script type="text/javascript">
             window.onReady(function onReady() {
