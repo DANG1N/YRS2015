@@ -1,2 +1,6 @@
+# Junk
 .DS_Store
 Thumbs.db
+
+# Composer
+vendor/

@@ -31,9 +31,6 @@ var game = {
         me.loader.onload = this.loaded.bind(this);
 
         // Load the resources.
-        game.resources.push(
-            {name: "area01", type: "tmx", src: "data/area01.tmx"}
-        );
         me.loader.preload(game.resources);
 
         // Initialize melonJS and display a loading screen.
