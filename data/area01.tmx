@@ -76,7 +76,12 @@
   </object>
  </objectgroup>
  <objectgroup name="EnemyEntities">
-  <object id="47" name="EnemyEntity" x="510" y="384" width="194" height="32"/>
+  <object id="47" name="EnemyEntity" x="510" y="384" width="194" height="32">
+   <properties>
+    <property name="framewidth" value="32"/>
+    <property name="image" value="wheelie_right"/>
+   </properties>
+  </object>
   <object id="48" name="CoinEntity" x="50" y="344" width="32" height="32">
    <properties>
     <property name="framewidth" value="32"/>
