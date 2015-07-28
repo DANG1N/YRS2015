@@ -31,6 +31,9 @@ var game = {
         me.loader.onload = this.loaded.bind(this);
 
         // Load the resources.
+        game.resources.push(
+            {name: "area01", type: "tmx", src: "data/area01.tmx"}
+        );
         me.loader.preload(game.resources);
 
         // Initialize melonJS and display a loading screen.
@@ -40,10 +43,16 @@ var game = {
     // Run on game resources loaded.
     "loaded" : function () {
         me.state.set(me.state.MENU, new game.TitleScreen());
+        // set the "Play/Ingame" Screen Object
         me.state.set(me.state.PLAY, new game.PlayScreen());
 
         // add our player entity in the entity pool
         me.pool.register("mainPlayer", game.PlayerEntity);
+
+        // enable the keyboard
+        me.input.bindKey(me.input.KEY.LEFT,  "left");
+        me.input.bindKey(me.input.KEY.RIGHT, "right");
+        me.input.bindKey(me.input.KEY.X,     "jump", true);
 
         // Start the game.
         me.state.change(me.state.PLAY);
