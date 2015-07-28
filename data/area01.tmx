@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="15" tilewidth="32" tileheight="32" nextobjectid="57">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="15" tilewidth="32" tileheight="32" nextobjectid="58">
  <tileset firstgid="1" name="area01_level_tiles" tilewidth="32" tileheight="32">
   <image source="img/map/area01_level_tiles.png" width="640" height="241"/>
  </tileset>
@@ -43,7 +43,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="collision">
+ <objectgroup name="collision" visible="0">
   <object id="13" x="1" y="133" width="92" height="57"/>
   <object id="14" x="93" y="163" width="98" height="61"/>
   <object id="15" x="192" y="196" width="94" height="60"/>
@@ -67,7 +67,7 @@
   <object id="53" x="1260" y="-18" width="25" height="169"/>
   <object id="56" x="1" y="0" width="6" height="143"/>
  </objectgroup>
- <objectgroup name="Entities">
+ <objectgroup name="Entities" visible="0">
   <object id="45" name="CoinEntity" x="347" y="221" width="32" height="32">
    <properties>
     <property name="framewidth" value="32"/>
@@ -75,7 +75,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="EnemyEntities">
+ <objectgroup name="EnemyEntities" visible="0">
   <object id="47" name="EnemyEntity" x="510" y="384" width="194" height="32"/>
   <object id="48" name="CoinEntity" x="50" y="344" width="32" height="32">
    <properties>
@@ -101,5 +101,8 @@
     <property name="image" value="spinning_coin_gold"/>
    </properties>
   </object>
+ </objectgroup>
+ <objectgroup name="Iframe" opacity="0.9">
+  <object id="57" x="68" y="35" width="485" height="402"/>
  </objectgroup>
 </map>
