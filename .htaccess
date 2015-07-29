@@ -9,6 +9,6 @@ Options -Indexes
 
 RewriteBase /
 
-RewriteCond %{REQUEST_FILENAME} !(index\.php|assets|js|css)
+RewriteCond %{REQUEST_FILENAME} !(index\.php|assets|js|css|images)
 
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
