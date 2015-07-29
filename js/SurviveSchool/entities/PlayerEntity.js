@@ -27,14 +27,18 @@ me.Entity.extend({
         var animation = "stand";
         if (me.input.isKeyPressed('left')) {
             this.body.vel.x -= this.body.accel.x * me.timer.tick;
+            this.body.vel.y = 0;
             animation = "walk_left";
         } else if (me.input.isKeyPressed('right')) {
+            this.body.vel.y = 0;
             this.body.vel.x += this.body.accel.x * me.timer.tick;
             animation = "walk_right";
         } else if (me.input.isKeyPressed('up')) {
+            this.body.vel.x = 0;
             this.body.vel.y -= this.body.accel.y * me.timer.tick;
             animation = "walk_up";
         } else if (me.input.isKeyPressed('down')) {
+            this.body.vel.x = 0;
             this.body.vel.y += this.body.accel.y * me.timer.tick;
             animation = "walk_down";
         } else {
@@ -43,9 +47,6 @@ me.Entity.extend({
         }
         if (!this.renderable.isCurrentAnimation(animation)) {
             this.renderable.setCurrentAnimation(animation);
-        }
-        if (this.body.pos.x < -1) {
-            this.body.pos.x = 0;
         }
 
         // apply physics to the body (this moves the entity)
