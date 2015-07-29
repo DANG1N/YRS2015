@@ -33,6 +33,7 @@ var GameRegistry = {};
                 var fqn = named(name);
                 var tmx = me.loader.getTMX(fqn);
                 if (tmx) {
+                    var loaded = 0;
                     for (var i = 0, len = tmx.tileset.length; i < len; i++) {
                         var tSet = tmx.tileset[i];
                         tSet.image.source = "assets/" + namespace + "/maps/{random}/" + tSet.image.source;
@@ -40,10 +41,13 @@ var GameRegistry = {};
                             'name' : tSet.name,
                             'src' : tSet.image.source,
                             'type' : 'image'
+                        }, function() {
+                            if (++loaded == len) {
+                                me.levelDirector.loadLevel(fqn);
+                            }
                         });
                     }
                 }
-                me.levelDirector.loadLevel(fqn);
             };
         };
     };
