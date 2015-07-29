@@ -10,38 +10,43 @@ var GameRegistry = {};
         this.setReadyOrLoad = function() {
             self.loadWhenReady();
             ready = true;
-        }
+        };
         this.loadWhenReady = function() {
             if (ready) {
                 this.onLoad();
-                this.onLoad = function(){};
+                this.onLoad = function() {
+                };
             }
-        }
+        };
         this.onLoad = function() {
         };
         this.pool = new function() {
             this.register = function(className, entityObj, pooling) {
                 me.pool.register(named(className), entityObj, pooling);
-            }
-        }
+            };
+        };
         this.screenRegistry = {};
         this.entityRegistry = {};
 
         this.levelDirector = new function() {
             this.loadLevel = function(name) {
                 var fqn = named(name);
-                var tmx = null;// me.loader.getTMX(fqn);
+                var tmx = me.loader.getTMX(fqn);
                 if (tmx) {
-                    me.loader.load({
-                        'name' : tmx.tileset.name,
-                        'src' : 'assets/' + tmx.tileset.image.source.replace(/\.\.\//g, ''),
-                        'type' : 'image'
-                    });
+                    for (var i = 0, len = tmx.tileset.length; i < len; i++) {
+                        var tSet = tmx.tileset[i];
+                        tSet.image.source = "assets/" + namespace + "/maps/{random}/" + tSet.image.source;
+                        me.loader.load({
+                            'name' : tSet.name,
+                            'src' : tSet.image.source,
+                            'type' : 'image'
+                        });
+                    }
                 }
-                me.levelDirector.loadLevel(fqn)
-            }
-        }
-    }
+                me.levelDirector.loadLevel(fqn);
+            };
+        };
+    };
 
     var games = {};
 
@@ -76,23 +81,23 @@ var GameRegistry = {};
         this.entities = function(entities) {
             loadingEntities = entities;
             return this;
-        }
+        };
 
         this.screens = function(screens) {
             loadingScreens = screens;
             return this;
-        }
+        };
 
         this.sprites = function(sprites) {
             for (var i = 0; i < sprites.length; i++) {
                 resources.push({
-                    'name' : namespace + "." + sprites[i],
+                    'name' : sprites[i], // namespace + "." + sprites[i],
                     'type' : 'image',
                     'src' : "assets/" + namespace + "/sprites/" + sprites[i] + ".png"
                 });
             }
             return this;
-        }
+        };
 
         this.build = function() {
             me.loader.preload(resources);
@@ -129,7 +134,7 @@ var GameRegistry = {};
     };
 
     GameRegistry.initializeGame = function(name) {
-        console.debug("Initializing game", name)
+        console.debug("Initializing game", name);
         var script = document.createElement('script');
         script.src = 'js/' + name + '/game.js';
         document.head.appendChild(script);
@@ -137,5 +142,5 @@ var GameRegistry = {};
 
     GameRegistry.getGame = function(name) {
         return games[name];
-    }
+    };
 })();

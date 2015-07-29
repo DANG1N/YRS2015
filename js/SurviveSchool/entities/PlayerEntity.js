@@ -4,21 +4,19 @@ me.Entity.extend({
      * constructor
      */
     init : function(x, y, settings) {
-        settings.image = settings.image || 'gripe_run_right';
         this._super(me.Entity, 'init', [ x, y, settings ]);
         this.body.setVelocity(2, 2);
-        this.body.gravity = 0
+        this.body.gravity = 0;
 
         // set the display to follow our position on both axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 
-        // ensure the player is updated even when outside of the viewport
         this.alwaysUpdate = true;
-        // define a basic walking animation (using all frames)
-        this.renderable.addAnimation("walk", [ 0, 1, 2, 3, 4, 5, 6, 7 ]);
-        // define a standing animation (using the first frame)
+        this.renderable.addAnimation("walk_down", [ 0, 1, 2, 3, 4, 5, 6, 7 ]);
+        this.renderable.addAnimation("walk_up", [ 8, 9, 10, 11, 12, 13, 14, 15 ]);
+        this.renderable.addAnimation("walk_left", [ 16, 17, 18, 19, 20, 21, 22, 23 ]);
+        this.renderable.addAnimation("walk_right", [ 24, 25, 26, 27, 28, 29, 30, 31 ]);
         this.renderable.addAnimation("stand", [ 0 ]);
-        // set the standing animation as default
         this.renderable.setCurrentAnimation("stand");
     },
 
@@ -26,39 +24,26 @@ me.Entity.extend({
      * update the entity
      */
     update : function(dt) {
+        var animation = "stand";
         if (me.input.isKeyPressed('left')) {
-            // flip the sprite on horizontal axis
-            this.renderable.flipX(true);
-            // update the entity velocity
             this.body.vel.x -= this.body.accel.x * me.timer.tick;
-            // change to the walking animation
-            if (!this.renderable.isCurrentAnimation("walk")) {
-                this.renderable.setCurrentAnimation("walk");
-            }
+            animation = "walk_left";
         } else if (me.input.isKeyPressed('right')) {
-            // unflip the sprite
-            this.renderable.flipX(false);
-            // update the entity velocity
             this.body.vel.x += this.body.accel.x * me.timer.tick;
-            // change to the walking animation
-            if (!this.renderable.isCurrentAnimation("walk")) {
-                this.renderable.setCurrentAnimation("walk");
-            }
+            animation = "walk_right";
         } else if (me.input.isKeyPressed('up')) {
-            this.renderable.flipY(false);
-            // update the entity velocity
             this.body.vel.y -= this.body.accel.y * me.timer.tick;
+            animation = "walk_up";
         } else if (me.input.isKeyPressed('down')) {
-            this.renderable.flipY(true);
-            // update the entity velocity
             this.body.vel.y += this.body.accel.y * me.timer.tick;
+            animation = "walk_down";
         } else {
             this.body.vel.x = 0;
             this.body.vel.y = 0;
-            // change to the standing animation
-            this.renderable.setCurrentAnimation("stand");
         }
-        window.playerE = this
+        if (!this.renderable.isCurrentAnimation(animation)) {
+            this.renderable.setCurrentAnimation(animation);
+        }
         if (this.body.pos.x < -1) {
             this.body.pos.x = 0;
         }
@@ -77,9 +62,9 @@ me.Entity.extend({
      * colision handler (called when colliding with other objects)
      */
     onCollision : function(response, object) {
-        if (object.type  == "portal") {
-            ScratchLoader.overlayProject(68248124)
-            me.state.pause(true)
+        if (object.type == "portal") {
+            ScratchLoader.overlayProject(68248124);
+            me.state.pause(true);
             return false;
         }
         // Make all other objects solid

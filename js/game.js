@@ -41,7 +41,8 @@ var game = {
     "loaded" : function() {
         var mainGame = GameRegistry.getGame('SurviveSchool');
         if (!mainGame) {
-            setTimeout(this, 0.1)
+            setTimeout(this, 0.1);
+            return
         }
         mainGame.loadWhenReady();
     }

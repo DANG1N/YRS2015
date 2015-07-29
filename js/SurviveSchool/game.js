@@ -1,21 +1,9 @@
-var surviveSchool = GameRegistry.gameBuilder('SurviveSchool').maps([ 'lobby' ]).entities([ 'PlayerEntity' ])
-        .screens([ 'PlayScreen' ]).sprites([ 'gripe_run_right' ]).build();
-
-me.loader.preload([ {
-    'name' : 'example_set_1',
-    'type' : 'image',
-    'src' : 'assets/_shared/tilesets/example_set_1.png'
-} ])
-me.loader.preload([ {
-    'name' : 'gripe_run_right',
-    'type' : 'image',
-    'src' : 'assets/SurviveSchool/sprites/gripe_run_right.png'
-} ])
+var surviveSchool = GameRegistry.gameBuilder('SurviveSchool').maps([ 'School' ]).entities([ 'PlayerEntity' ])
+        .screens([ 'PlayScreen' ]).sprites([ 'rpg_sprite_walk' ]).build();
 
 surviveSchool.onLoad = function() {
-    console.log("SS load")
     // this.pool.register("Player", this.entityRegistry.get('PlayerEntity'));
-    me.pool.register("Player", this.entityRegistry['PlayerEntity']);
+    me.pool.register("mainPlayer", this.entityRegistry['PlayerEntity']);
 
     me.state.set(me.state.PLAY, new this.screenRegistry.PlayScreen());
 
@@ -25,7 +13,7 @@ surviveSchool.onLoad = function() {
     me.input.bindKey(me.input.KEY.DOWN, "down");
 
     me.state.change(me.state.PLAY);
-}
+};
 
 /**
  * a HUD container and child items
@@ -80,8 +68,8 @@ surviveSchool.HUD.ScoreItem = me.Renderable.extend({
         // we don't do anything fancy here, so just
         // return true if the score has been updated
         // if (this.score !== game.data.score) {
-            // this.score = game.data.score;
-            // return true;
+        // this.score = game.data.score;
+        // return true;
         // }
         return false;
     },

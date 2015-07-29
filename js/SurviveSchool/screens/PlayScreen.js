@@ -4,11 +4,11 @@ me.ScreenObject.extend({
      */
     onResetEvent : function() {
         // load a level
-        surviveSchool.levelDirector.loadLevel("lobby");
+        surviveSchool.levelDirector.loadLevel("School");
 
         // add our HUD to the game world
-        //this.HUD = new surviveSchool.HUD.Container();
-        //me.game.world.addChild(this.HUD);
+        // this.HUD = new surviveSchool.HUD.Container();
+        // me.game.world.addChild(this.HUD);
     },
 
     /**
@@ -16,6 +16,6 @@ me.ScreenObject.extend({
      */
     onDestroyEvent : function() {
         // remove the HUD from the game world
-        //me.game.world.removeChild(this.HUD);
+        // me.game.world.removeChild(this.HUD);
     }
 });
