@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" nextobjectid="19">
  <tileset firstgid="1" name="School" tilewidth="32" tileheight="32">
-  <image source="../../../Desktop/Tilesets/tumblr_nd1o31rrEl1sjx9ceo1_500.png" width="500" height="500"/>
+  <image source="Tilesets/tumblr_nd1o31rrEl1sjx9ceo1_500.png" width="500" height="500"/>
  </tileset>
  <tileset firstgid="226" name="school" tilewidth="32" tileheight="32">
-  <image source="../../../Desktop/Tilesets/JapaneseVillageinside.png" width="256" height="768"/>
+  <image source="Tilesets/JapaneseVillageinside.png" width="256" height="768"/>
  </tileset>
  <tileset firstgid="418" name="School" tilewidth="32" tileheight="32">
-  <image source="../../../Desktop/Tilesets/33b97f35bd1e0666bc8a83c1e755.png" width="256" height="2048"/>
+  <image source="Tilesets/33b97f35bd1e0666bc8a83c1e755.png" width="256" height="2048"/>
  </tileset>
  <tileset firstgid="930" name="School" tilewidth="32" tileheight="32">
-  <image source="../../../Desktop/Tilesets/80cac661fee9aaaca05407094993.png" width="256" height="544"/>
+  <image source="Tilesets/80cac661fee9aaaca05407094993.png" width="256" height="544"/>
  </tileset>
  <tileset firstgid="1066" name="School" tilewidth="32" tileheight="32">
-  <image source="../../../Desktop/Tilesets/Interieur-Tiles+Murs.png" width="256" height="1632"/>
+  <image source="Tilesets/Interieur-Tiles+Murs.png" width="256" height="1632"/>
  </tileset>
  <tileset firstgid="1474" name="height" tilewidth="32" tileheight="32">
-  <image source="../../../Desktop/Tilesets/post.png" width="64" height="32"/>
+  <image source="Tilesets/post.png" width="64" height="32"/>
  </tileset>
  <tileset firstgid="1476" name="Horizontal wall" tilewidth="32" tileheight="32">
-  <image source="../../../Desktop/Tilesets/Wall 2d horizontal.png" width="96" height="32"/>
+  <image source="Tilesets/Wall 2d horizontal.png" width="96" height="32"/>
  </tileset>
  <tileset firstgid="1479" name="rpg_sprite_walk" tilewidth="24" tileheight="32">
-  <image source="../../../Desktop/Tilesets/rpg_sprite_walk.png" width="192" height="128"/>
+  <image source="Tilesets/rpg_sprite_walk.png" width="192" height="128"/>
  </tileset>
  <tileset firstgid="1511" name="mychars" tilewidth="32" tileheight="32">
-  <image source="../../../Desktop/Tilesets/mychars.png" width="384" height="256"/>
+  <image source="Tilesets/mychars.png" width="384" height="256"/>
  </tileset>
  <layer name="Foreground" width="64" height="64">
   <data encoding="base64">
