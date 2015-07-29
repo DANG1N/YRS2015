@@ -12,6 +12,8 @@
     <body>
         <!-- Canvas placeholder -->
         <div id="screen"></div>
+        <div style="overflow-y: hidden;margin-left:auto;margin-right:auto" id="scratch">
+        </div>
 
         {%for script in scripts {
             <script type="text/javascript" src="{%{script.src}%}"{%{script.additional}%}></script>

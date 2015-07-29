@@ -1,0 +1,14 @@
+SetEnv TZ Europe/London
+
+Options -MultiViews
+Allow from ALL
+
+RewriteEngine On
+
+Options -Indexes
+
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !(index\.php|assets|js|css)
+
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]

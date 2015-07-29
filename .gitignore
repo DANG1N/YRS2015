@@ -4,3 +4,7 @@ Thumbs.db
 
 # Composer
 vendor/
+
+# Eclipse
+.settings/
+.project
