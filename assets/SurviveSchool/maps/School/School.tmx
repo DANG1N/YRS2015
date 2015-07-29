@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" nextobjectid="19">
- <tileset firstgid="1" name="School" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tumblr_nd1o31rrEl1sjx9ceo1_500" tilewidth="32" tileheight="32">
   <image source="../../tilesets/tumblr_nd1o31rrEl1sjx9ceo1_500.png" width="500" height="500"/>
  </tileset>
- <tileset firstgid="226" name="school" tilewidth="32" tileheight="32">
+ <tileset firstgid="226" name="JapaneseVillageinside" tilewidth="32" tileheight="32">
   <image source="../../tilesets/JapaneseVillageinside.png" width="256" height="768"/>
  </tileset>
- <tileset firstgid="418" name="School" tilewidth="32" tileheight="32">
+ <tileset firstgid="418" name="33b97f35bd1e0666bc8a83c1e755" tilewidth="32" tileheight="32">
   <image source="../../tilesets/33b97f35bd1e0666bc8a83c1e755.png" width="256" height="2048"/>
  </tileset>
- <tileset firstgid="930" name="School" tilewidth="32" tileheight="32">
+ <tileset firstgid="930" name="80cac661fee9aaaca05407094993" tilewidth="32" tileheight="32">
   <image source="../../tilesets/80cac661fee9aaaca05407094993.png" width="256" height="544"/>
  </tileset>
- <tileset firstgid="1066" name="School" tilewidth="32" tileheight="32">
+ <tileset firstgid="1066" name="Interieur-Tiles+Murs" tilewidth="32" tileheight="32">
   <image source="../../tilesets/Interieur-Tiles+Murs.png" width="256" height="1632"/>
  </tileset>
- <tileset firstgid="1474" name="height" tilewidth="32" tileheight="32">
+ <tileset firstgid="1474" name="post" tilewidth="32" tileheight="32">
   <image source="../../tilesets/post.png" width="64" height="32"/>
  </tileset>
- <tileset firstgid="1476" name="Horizontal wall" tilewidth="32" tileheight="32">
+ <tileset firstgid="1476" name="Wall 2d horizontal" tilewidth="32" tileheight="32">
   <image source="../../tilesets/Wall 2d horizontal.png" width="96" height="32"/>
  </tileset>
  <tileset firstgid="1479" name="rpg_sprite_walk" tilewidth="24" tileheight="32">
-  <image source="../../tilesets/rpg_sprite_walk.png" width="192" height="128"/>
+  <image source="../../sprites/rpg_sprite_walk.png" width="192" height="128"/>
  </tileset>
  <tileset firstgid="1511" name="mychars" tilewidth="32" tileheight="32">
-  <image source="../../tilesets/mychars.png" width="384" height="256"/>
+  <image source="../../sprites/mychars.png" width="384" height="256"/>
  </tileset>
  <layer name="Foreground" width="64" height="64">
   <data encoding="base64">
@@ -61,11 +61,11 @@
   <object id="16" x="793" y="225" width="10" height="188"/>
   <object id="17" x="1047" y="222" width="11" height="190"/>
  </objectgroup>
- <objectgroup name="mainPlayer">
-  <object id="18" x="770" y="1018" width="32" height="10">
+ <objectgroup name="Player Layer">
+  <object id="18" name="mainPlayer" x="770" y="1018" width="64" height="64">
    <properties>
     <property name="framewidth" value="24"/>
-    <property name="image" value=""/>
+    <property name="image" value="rpg_sprite_walk"/>
    </properties>
   </object>
  </objectgroup>
