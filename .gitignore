@@ -11,3 +11,4 @@ vendor/
 
 # Database files
 db/
+composer.phar
