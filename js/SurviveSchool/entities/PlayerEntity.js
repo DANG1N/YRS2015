@@ -63,10 +63,30 @@ me.Entity.extend({
      * colision handler (called when colliding with other objects)
      */
     onCollision : function(response, object) {
-        if (object.type == "minigame") {
+        if (object.name == "minigame") {
             var gameName = object.minigame;
-            // TEMP
-            ScratchLoader.overlayProject(68248124);
+            var scratchId = null;
+            switch (gameName) {
+                case 0:
+                    scratchId = 71853976;
+                    break;
+                case 1:
+                    scratchId = 71850102;
+                    break;
+                case 2:
+                    scratchId = 34432760;
+                    break;
+                case 3:
+                    scratchId = 71768500;
+                    break;
+                case 4:
+                    scratchId = 71762202;
+                    break;
+            }
+            if (scratchId == null) {
+                return true;
+            }
+            ScratchLoader.overlayProject(scratchId);
             me.state.pause(true);
             return false;
         }

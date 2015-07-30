@@ -1,5 +1,5 @@
-var surviveSchool = GameRegistry.gameBuilder('SurviveSchool').maps([ 'School' ]).entities([ 'PlayerEntity' ]).screens([
-        'TitleScreen', 'PlayScreen' ]).sprites([ 'rpg_sprite_walk' ]).build();
+var surviveSchool = GameRegistry.gameBuilder('SurviveSchool').maps([ 'School' ]).entities([ 'PlayerEntity',
+        'MinigameEntity' ]).screens([ 'TitleScreen', 'PlayScreen' ]).sprites([ 'rpg_sprite_walk' ]).build();
 
 // TODO temporary
 me.loader.preload([ {
@@ -10,6 +10,7 @@ me.loader.preload([ {
 
 surviveSchool.onLoad = function() {
     me.pool.register("mainPlayer", this.entityRegistry['PlayerEntity']);
+    me.pool.register("minigame", this.entityRegistry['MinigameEntity']);
 
     me.state.set(me.state.MENU, new this.screenRegistry.TitleScreen());
     me.state.set(me.state.PLAY, new this.screenRegistry.PlayScreen());
