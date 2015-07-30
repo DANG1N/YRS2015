@@ -9,17 +9,22 @@ class School
         $f = fopen('db/edubase.csv', 'rb');
         $headers = fgetcsv($f);
 
-        $idCol = array_search('URN', $headers);
         $wardCol = array_search('AdministrativeWard (name)', $headers);
         $constituencyCol = array_search('ParliamentaryConstituency (name)', $headers);
         $localityCol = array_search('Locality', $headers);
         $countyCol = array_search('County (name)', $headers);
         $postcodeCol = array_search('Postcode', $headers);
 
-        $locData = json_decode(file_get_contents("http://uk-postcodes.com/latlng/{$lat},{$long}.json"));
-
-        $likely = array();
-
+        $jsonData = file_get_contents("http://uk-postcodes.com/latlng/{$lat},{$long}.json");
+        if ($jsonData === false) {
+            echo 'false';
+            return;
+        }
+        $locData = json_decode($jsonData);
+        if (!$locData) {
+            echo 'false';
+            return;
+        }
         $lAd = $locData->administrative;
         $locCounty = isset($lAd->county) ? $lAd->county->title : null;
         $locWard = isset($lAd->ward) ? $lAd->ward->title : null;
@@ -27,51 +32,38 @@ class School
         $locParish = isset($lAd->parish) ? $lAd->parish->title : null;
         $locPostcode = isset($lAd->postcode) ? $locData->postcode : null;
 
-        $schools = array();
+        $most = null;
+        $mostCount = 0;
+
         while (($line = fgetcsv($f)) !== false) {
-            $id = $line[$idCol];
-            if (!isset($likely[$id])) {
-                $likely[$id] = 0;
+            $count = 0;
+            if ($locCounty != null && $line[$countyCol] == $locCounty) {
+                $count++;
             }
-            if ($line[$countyCol] == $locCounty) {
-                $likely[$id] += 1;
-                $schools[$id] = $line;
+            if ($locWard != null && $line[$wardCol] == $locWard) {
+                $count++;
             }
-            if ($line[$wardCol] == $locWard) {
-                $likely[$id] += 1;
-                $schools[$id] = $line;
+            if ($locConstituency != null && $line[$constituencyCol] == $locConstituency) {
+                $count++;
             }
-            if ($line[$constituencyCol] == $locConstituency) {
-                $likely[$id] += 1;
-                $schools[$id] = $line;
+            if ($locParish != null && $line[$localityCol] == $locParish) {
+                $count++;
             }
-            if ($line[$localityCol] == $locParish) {
-                $likely[$id] += 1;
-                $schools[$id] = $line;
+            if ($locPostcode != null && $line[$postcodeCol] == $locPostcode) {
+                $count++;
             }
-            if ($line[$postcodeCol] == $locPostcode) {
-                $likely[$id] += 1;
-                $schools[$id] = $line;
-            }
-            if ($likely[$id] == 0) {
-                unset($likely[$id]);
+
+            if ($count > $mostCount) {
+                $mostCount = $count;
+                $most = $line;
             }
         }
         fclose($f);
-        $most = 0;
-        $mostId = null;
-        foreach ($likely as $id => $num) {
-            if ($num > $most) {
-                $most = $num;
-                $mostId = $id;
-            }
-        }
-        if ($mostId !== null) {
+        if ($most !== null) {
             $school = array();
             foreach ($headers as $i => $h) {
-                $school[$h] = $schools[$mostId][$i];
+                $school[$h] = $most[$i];
             }
-            $schools = null;
             echo json_encode(array(
                 'name' => $school['EstablishmentName']
             ));
