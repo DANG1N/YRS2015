@@ -18,7 +18,7 @@ var ScratchLoader = new function() {
         iFrame.height = Math.min(me.video.renderer.gameHeightZoom, 800);
         overlay.style.width = me.video.renderer.gameWidthZoom + 'px';
         overlay.style.height = me.video.renderer.gameHeightZoom + 'px';
-        iFrame.src = "http://scratch.mit.edu/projects/embed/" + projectId + "/?autostart=true";
+        iFrame.src = "//scratch.mit.edu/projects/embed/" + projectId + "/?autostart=true";
         iFrame.setAttribute('frameborder', 0);
         iFrame.setAttribute('allowfullscreen', true);
         iFrame.setAttribute('data-projectId', projectId);
@@ -31,17 +31,13 @@ var ScratchLoader = new function() {
             remaining -= 0.5;
             if (remaining <= 0) {
                 clearInterval(intervalId);
+                countdown.textContent = "Time is up!";
             }
         }, 500);
-        var to = setTimeout(function() {
-            ScratchLoader.clearOverlay();
-            onFinish && onFinish();
-        }, 2 * 60 * 1000);
 
         document.getElementById('returnClick').onclick = function(event) {
             event.preventDefault();
             console.log("Exit");
-            clearInterval(to);
             ScratchLoader.clearOverlay();
             onFinish && onFinish();
         };
@@ -51,7 +47,7 @@ var ScratchLoader = new function() {
         if (iFrame) {
             overlay.removeChild(iFrame);
             iFrame = null;
-            challengeDiv.display = 'none';
+            challengeDiv.style.display = 'none';
             document.getElementById('screen').style.display = 'initial';
             clearInterval(intervalId);
         }

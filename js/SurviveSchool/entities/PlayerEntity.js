@@ -85,8 +85,16 @@ me.Entity.extend({
                     scratchId = 71762202;
                     break;
                 case 6:
+                    scratchId = 71863232;
                     break;
                 case 7:
+                    scratchId = 71869816;
+                    break;
+                case 8:
+                    scratchId = 71869686;
+                    break;
+                case 9:
+                    scratchId = 71867628;
                     break;
             }
             if (scratchId == null) {
