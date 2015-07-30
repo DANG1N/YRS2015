@@ -127,7 +127,7 @@
   <object id="56" x="1377" y="349.333" width="5.33333" height="65.3333"/>
  </objectgroup>
  <objectgroup name="Minigame layer">
-  <object id="34" type="minigame" x="837.5" y="309" width="22" height="22.5">
+  <object id="34" name="minigame" x="837.5" y="309" width="22" height="22.5">
    <properties>
     <property name="minigame" value="0"/>
    </properties>

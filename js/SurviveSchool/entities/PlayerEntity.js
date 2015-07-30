@@ -68,7 +68,8 @@ me.Entity.extend({
             var scratchId = null;
             switch (gameName) {
                 case 0:
-                    break;
+                    GameRegistry.initializeGame('DemoGame');
+                    return;
                 case 1:
                     scratchId = 71853976;
                     break;
