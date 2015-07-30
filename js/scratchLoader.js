@@ -16,6 +16,7 @@ var ScratchLoader = new function() {
         iFrame.setAttribute('allowtransparency', true);
         iFrame.width = Math.min(me.video.renderer.gameWidthZoom, 900);
         iFrame.height = Math.min(me.video.renderer.gameHeightZoom, 800);
+        overlay.style.display = 'block';
         overlay.style.width = me.video.renderer.gameWidthZoom + 'px';
         overlay.style.height = me.video.renderer.gameHeightZoom + 'px';
         iFrame.src = "//scratch.mit.edu/projects/embed/" + projectId + "/?autostart=true";
@@ -50,6 +51,7 @@ var ScratchLoader = new function() {
             challengeDiv.style.display = 'none';
             document.getElementById('screen').style.display = 'initial';
             clearInterval(intervalId);
+            overlay.style.display = 'none';
         }
     };
 };
