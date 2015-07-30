@@ -33,8 +33,8 @@ me.ScreenObject.extend({
             var lat = loc.coords.latitude;
             var long = loc.coords.longitude;
             message = "GOT LOCATION, SEARCHING FOR SCHOOL";
-            ajax.get('/school/find/' + lat + "," + long, function(ret) {
-                if (ret == false) {
+            ajax.get('/school/find/' + lat + "," + long, function(school) {
+                if (school == false) {
                     message = "COULD NOT FIND NEARBY SCHOOL";
                     querySchoolName();
                 } else {

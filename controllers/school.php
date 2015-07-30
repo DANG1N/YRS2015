@@ -21,12 +21,11 @@ class School
         $likely = array();
 
         $lAd = $locData->administrative;
-        //$locCouncil = $lAd->council->title;
-        $locCounty = $lAd->county->title;
-        $locWard = $lAd->ward->title;
-        $locConstituency = $lAd->constituency->title;
-        $locParish = $lAd->parish->title;
-        $locPostcode = $locData->postcode;
+        $locCounty = isset($lAd->county) ? $lAd->county->title : null;
+        $locWard = isset($lAd->ward) ? $lAd->ward->title : null;
+        $locConstituency = isset($lAd->constituency) ? $lAd->constituency->title : null;
+        $locParish = isset($lAd->parish) ? $lAd->parish->title : null;
+        $locPostcode = isset($lAd->postcode) ? $locData->postcode : null;
 
         $schools = array();
         while (($line = fgetcsv($f)) !== false) {
