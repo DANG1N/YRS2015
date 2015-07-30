@@ -12,8 +12,12 @@
     <body>
         <!-- Canvas placeholder -->
         <div id="screen"></div>
-        <img src="images/scratch_challenge.png" style="margin-top:140px;display:none" id="scratchChallenge">
-        <div style="overflow-y: hidden;margin-left:auto;margin-right:auto;margin-top:-200px" id="scratch">
+        <div id="scratchChallenge" style="margin-top:140px;display:none">
+            <img src="images/scratch_challenge.png">
+            <div id="countdown" style="color:white"></div>
+            <a href="#" id="returnClick">Exit Minigame</a>
+        </div>
+        <div style="overflow-y: hidden;margin-left:400px;margin-top:-90px" id="scratch">
         </div>
 
         {%for script in scripts {

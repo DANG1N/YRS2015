@@ -68,25 +68,35 @@ me.Entity.extend({
             var scratchId = null;
             switch (gameName) {
                 case 0:
-                    scratchId = 71853976;
                     break;
                 case 1:
-                    scratchId = 71850102;
+                    scratchId = 71853976;
                     break;
                 case 2:
-                    scratchId = 34432760;
+                    scratchId = 71850102;
                     break;
                 case 3:
-                    scratchId = 71768500;
+                    scratchId = 34432760;
                     break;
                 case 4:
+                    scratchId = 71768500;
+                    break;
+                case 5:
                     scratchId = 71762202;
+                    break;
+                case 6:
+                    break;
+                case 7:
                     break;
             }
             if (scratchId == null) {
+                console.log("No scratch ID, name:", gameName);
                 return true;
             }
-            ScratchLoader.overlayProject(scratchId);
+            ScratchLoader.overlayProject(scratchId, function() {
+                me.state.resume();
+            });
+            this.pos.set(1300, 470);
             me.state.pause(true);
             return false;
         }
