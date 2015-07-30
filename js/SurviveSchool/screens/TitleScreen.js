@@ -16,7 +16,7 @@ me.ScreenObject.extend({
         }
 
         function querySchoolName() {
-            var name = prompt("Enter school name");
+            var name = prompt("Enter school name", "Unnamed School");
             if (name) {
                 setTimeout(function() {
                     enablePlay(name);
