@@ -10,7 +10,7 @@ me.ScreenObject.extend({
         var message = "FINDING YOUR LOCATION";
 
         function enablePlay(schoolName) {
-            message = "YOUR SCHOOL IS: " + schoolName.toUpperCase() + "\n\n  PRESS ENTER TO PLAY";
+            message = "YOUR SCHOOL IS: " + schoolName.toUpperCase() + "\n\nPRESS ENTER TO PLAY";
             me.input.bindKey(me.input.KEY.ENTER, "enter", true);
             me.input.bindPointer(me.input.mouse.LEFT, me.input.KEY.ENTER);
         }
@@ -18,7 +18,9 @@ me.ScreenObject.extend({
         function querySchoolName() {
             var name = prompt("Enter school name");
             if (name) {
-                enablePlay(name);
+                setTimeout(function() {
+                    enablePlay(name);
+                }, 50);
             } else {
                 querySchoolName();
             }
@@ -27,7 +29,7 @@ me.ScreenObject.extend({
         GeoLocation.wait(function(loc) {
             if (loc == null) {
                 message = "FAILED TO FIND YOUR LOCATION";
-                querySchoolName();
+                setTimeout(querySchoolName, 50);
                 return;
             }
             var lat = loc.coords.latitude;
@@ -36,12 +38,14 @@ me.ScreenObject.extend({
             ajax.get('/school/find/' + lat + "," + long, function(school) {
                 if (school == false) {
                     message = "COULD NOT FIND NEARBY SCHOOL";
-                    querySchoolName();
+                    setTimeout(querySchoolName, 50);
                 } else {
                     enablePlay(school.name);
                 }
             });
         });
+
+        var maxCharLen = 35;
 
         me.game.world.addChild(new (me.Renderable.extend({
             // constructor
@@ -57,17 +61,27 @@ me.ScreenObject.extend({
             },
 
             draw : function(renderer) {
-                for (var i = 0; i < message.length % 40; i++) {
-                    this.font.draw(renderer, message.substring(i * 40, (i + 1) * 40), 0, 240 + (i * (32 + 5)));
+                var lines = message.split('\n');
+                var shift = 0;
+                for (var i = 0; i < lines.length; i++) {
+                    shift += this.drawLine(renderer, lines[i], 80, 320 + shift);
                 }
+            },
+
+            drawLine : function(renderer, line, x, y) {
+                var len = (line.length / maxCharLen) + 1;
+                for (var i = 0; i < len; i++) {
+                    this.font.draw(renderer, line.substring(i * maxCharLen, (i + 1) * maxCharLen), x, y
+                            + (i * (32 + 5)));
+                }
+                return len * 37;
             }
         })), 2);
 
         this.handler = me.event.subscribe(me.event.KEYDOWN, function(action, keyCode, edge) {
             if (action === "enter") {
-                // play something on tap / enter
-                // this will unlock audio on mobile devices
-                me.audio.play("cling");
+                me.input.unbindKey(me.input.KEY.ENTER);
+                me.input.unbindPointer(me.input.mouse.LEFT);
                 me.state.change(me.state.PLAY);
             }
         });

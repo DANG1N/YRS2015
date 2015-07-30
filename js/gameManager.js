@@ -30,9 +30,10 @@ var GameRegistry = {};
 
         this.levelDirector = new function() {
             this.loadLevel = function(name) {
+                console.debug("Loading level: ", name);
                 var fqn = named(name);
                 var tmx = me.loader.getTMX(fqn);
-                if (tmx) {
+                if (tmx && tmx.tileset) {
                     var loaded = 0;
                     for (var i = 0, len = tmx.tileset.length; i < len; i++) {
                         var tSet = tmx.tileset[i];
