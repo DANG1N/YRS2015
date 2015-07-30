@@ -9,9 +9,25 @@ me.ScreenObject.extend({
 
         var message = "FINDING YOUR LOCATION";
 
+        function enablePlay(schoolName) {
+            message = "YOUR SCHOOL IS: " + schoolName.toUpperCase() + "\n\n  PRESS ENTER TO PLAY";
+            me.input.bindKey(me.input.KEY.ENTER, "enter", true);
+            me.input.bindPointer(me.input.mouse.LEFT, me.input.KEY.ENTER);
+        }
+
+        function querySchoolName() {
+            var name = prompt("Enter school name");
+            if (name) {
+                enablePlay(name);
+            } else {
+                querySchoolName();
+            }
+        }
+
         GeoLocation.wait(function(loc) {
             if (loc == null) {
-                message = "FAILED TO FIND YOU LOCATION";
+                message = "FAILED TO FIND YOUR LOCATION";
+                querySchoolName();
                 return;
             }
             var lat = loc.coords.latitude;
@@ -20,11 +36,9 @@ me.ScreenObject.extend({
             ajax.get('/school/find/' + lat + "," + long, function(ret) {
                 if (ret == false) {
                     message = "COULD NOT FIND NEARBY SCHOOL";
+                    querySchoolName();
                 } else {
-                    var school = ret;
-                    message = "YOUR SCHOOL IS: " + school.name.toUpperCase() + "\n\n  PRESS ENTER TO PLAY";
-                    me.input.bindKey(me.input.KEY.ENTER, "enter", true);
-                    me.input.bindPointer(me.input.mouse.LEFT, me.input.KEY.ENTER);
+                    enablePlay(school.name);
                 }
             });
         });

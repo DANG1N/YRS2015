@@ -63,7 +63,9 @@ me.Entity.extend({
      * colision handler (called when colliding with other objects)
      */
     onCollision : function(response, object) {
-        if (object.type == "portal") {
+        if (object.type == "minigame") {
+            var gameName = object.minigame;
+            // TEMP
             ScratchLoader.overlayProject(68248124);
             me.state.pause(true);
             return false;
