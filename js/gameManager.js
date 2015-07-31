@@ -25,6 +25,7 @@ var GameRegistry = {};
                 me.pool.register(named(className), entityObj, pooling);
             };
         };
+        this.data = {};
         this.screenRegistry = {};
         this.entityRegistry = {};
 

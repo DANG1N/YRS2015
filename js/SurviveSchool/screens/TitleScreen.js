@@ -11,6 +11,7 @@ me.ScreenObject.extend({
 
         function enablePlay(schoolName) {
             message = "YOUR SCHOOL IS: " + schoolName.toUpperCase() + "\n\nPRESS ENTER TO PLAY";
+            surviveSchool.data.schoolName = schoolName;
             me.input.bindKey(me.input.KEY.ENTER, "enter", true);
             me.input.bindPointer(me.input.mouse.LEFT, me.input.KEY.ENTER);
         }
