@@ -5,7 +5,6 @@ class School
     public function find($coords)
     {
         header('Content-Type: application/json');
-        die('{"name":"Awesome"}');
         list($lat, $long) = array_map('floatval', explode(',', $coords));
         $f = fopen('db/edubase.csv', 'rb');
         $headers = fgetcsv($f);
