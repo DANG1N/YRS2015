@@ -31,3 +31,8 @@ body {
     image-rendering: optimize-contrast;
     -ms-interpolation-mode: nearest-neighbor;
 }
+
+#spotify {
+    margin-top: -275px;
+    height: 359px;
+}
