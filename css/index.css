@@ -31,3 +31,7 @@ body {
     image-rendering: optimize-contrast;
     -ms-interpolation-mode: nearest-neighbor;
 }
+
+#map-canvas {
+    height: 640px;
+}

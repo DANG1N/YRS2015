@@ -564,7 +564,8 @@ if (!Object.assign) {
             });
 
             return Class;
-        }
+        },
+        "writable": true
     });
 
     /**

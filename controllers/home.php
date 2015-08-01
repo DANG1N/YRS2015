@@ -18,7 +18,8 @@ class Home
             array('src' => 'js/ajax.js'),
             array('src' => 'js/gameManager.js'),
             array('src' => 'js/game.js'),
-            array('src' => 'js/scratchLoader.js')
+            array('src' => 'js/scratchLoader.js'),
+            array('src' => 'js/googleMapsLoader.js')
         );
     }
 }

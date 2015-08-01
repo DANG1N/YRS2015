@@ -68,7 +68,8 @@ me.Entity.extend({
             var scratchId = null;
             switch (gameName) {
                 case 0:
-                    break;
+                    GoogleMapsLoader.overlayGame();
+                    return false;
                 case 1:
                     scratchId = 71853976;
                     break;
