@@ -7,6 +7,16 @@ me.Entity.extend({
 
     draw : function(context) {
         this._super(me.Entity, 'draw', [ context ]);
-        this.font.draw(context, surviveSchool.data.schoolName, this.pos.x, this.pos.y);
+        var name = surviveSchool.data.schoolName;
+        var maxLen = name.length;
+        do {
+            var size = this.font.measureText(context, name.substring(0, maxLen--));
+        } while (size.width > this.width);
+        maxLen++;
+
+        for (var i = 0; i < (name.length / maxLen) + 1; i++) {
+            this.font.draw(context, name.substring(i * maxLen, maxLen * (i + 1)), this.pos.x, this.pos.y
+                    + (size.height * i));
+        }
     }
 });

@@ -96,6 +96,9 @@ me.Entity.extend({
                 case 9:
                     scratchId = 71965156;
                     break;
+                case 10:
+                    scratchId = 72008678;
+                    break;
             }
             if (scratchId == null) {
                 console.log("No scratch ID, name:", gameName);
